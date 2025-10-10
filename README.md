@@ -129,4 +129,4 @@ try {
 
 ## License
 
-See [LICENSE.md](LICENSE.md) for details.
+MIT License. See the [LICENSE](LICENSE) file for details.
