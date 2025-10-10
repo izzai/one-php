@@ -3,7 +3,7 @@
 This is the official PHP SDK for [One](https://one.izz.ai).
 
 [![PHP Version](https://img.shields.io/badge/PHP-%3E%3D8.1-blue.svg)](https://php.net/)
-[![License](https://img.shields.io/badge/License-See%20LICENSE.md-yellow.svg)](LICENSE.md)
+[![License](https://img.shields.io/badge/MIT-green.svg)](MIT)
 
 ## Installation
 
