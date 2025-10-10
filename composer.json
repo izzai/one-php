@@ -4,7 +4,7 @@
   "description": "One package for PHP projects.",
   "type": "library",
   "homepage": "https://www.izz.ai/",
-  "license": "SEE LICENSE.md",
+  "license": "MIT",
   "authors": [
     {
       "name": "Adarsh Mohan",

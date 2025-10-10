@@ -1,1 +1,0 @@
-United Innovations GmbH
