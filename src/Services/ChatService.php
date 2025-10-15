@@ -20,7 +20,7 @@ class ChatService extends BaseService
    * @param string $message
    * @param IChatBody $options
    * @param MessageMode $messageMode
-   * @return (MessageMode is MessageMode::ALL ? Chat : Message)
+   * @return (MessageMode is MessageMode::ALL ? ChatWithMessages : Message)
    */
   public function chat(
     string $message,

@@ -11,10 +11,10 @@ use Izzai\One\Types\OneAuthObjectType;
 
 class One extends BaseService
 {
-  public ?AgentService $agent = null;
-  public ?ChatService $chat = null;
-  public ?DatasourceService $datasource = null;
-  public ?GptService $gpt = null;
+  public AgentService $agent;
+  public ChatService $chat;
+  public DatasourceService $datasource;
+  public GptService $gpt;
 
   public function __construct(string $instanceId, OneAuthObjectType|string $auth, ?string $baseUrl = null)
   {
@@ -24,16 +24,16 @@ class One extends BaseService
 
   private function _init(): One
   {
-    if ($this->chat === null) {
+    if (empty($this->chat)) {
       $this->chat = new ChatService($this->instanceId, $this->auth, $this->baseUrl);
     }
-    if ($this->datasource === null) {
+    if (empty($this->datasource)) {
       $this->datasource = new DatasourceService($this->instanceId, $this->auth, $this->baseUrl);
     }
-    if ($this->gpt === null) {
+    if (empty($this->gpt)) {
       $this->gpt = new GptService($this->instanceId, $this->auth, $this->baseUrl);
     }
-    if ($this->agent === null) {
+    if (empty($this->agent)) {
       $this->agent = new AgentService($this->instanceId, $this->auth, $this->baseUrl);
     }
 

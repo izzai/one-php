@@ -51,13 +51,13 @@ $one = new One('YOUR_INSTANCE_ID', 'JWT_TOKEN');
 use Izzai\One\Types\IChatBody;
 
 // Simple chat [ defaults to AI message only ]
-$response = $one->chat->chat('Hi there');
+$response = $one->chat->chat('Hi there'); // Returns `Message`
 
 // Get only the User message
-$userResponse = $one->chat->chat('Hi there', IChatBody::from([]), 'user-message');
+$userResponse = $one->chat->chat('Hi there', IChatBody::from([]), 'user-message'); // Returns `Message`
 
 // Get full conversation
-$fullResponse = $one->chat->chat('Hi there', IChatBody::from([]), 'all');
+$fullResponse = $one->chat->chat('Hi there', IChatBody::from([]), 'all'); // Returns `ChatWithMessages`
 ```
 
 #### Chat with File
