@@ -52,7 +52,7 @@ class ChatService extends BaseService
    * @param string|null $fileName
    * @param IChatBody $options
    * @param MessageMode $messageMode
-   * @return (MessageMode is MessageMode::ALL ? Chat : Message)
+   * @return ($messageMode is MessageMode::ALL ? ChatWithMessages : Message)
    */
   public function chatWithFile(
     string $message,
