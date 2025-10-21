@@ -57,13 +57,38 @@ class Caster
         } elseif (is_object($value) || is_array($value)) {
           // 3. Handle single nested object (e.g., Agent)
           $obj->$key = $this->castToClass($value, $propertyDocType);
+        } elseif ($this->hasBlockType($property, gettype($value))) {
+          // 4. Custom, but also accepting primitives
+          $obj->$key = $value;
         }
       } else {
-        // 4. Default: Assign simple types
+        // 5. Default: Assign simple types
         $obj->$key = $value;
       }
     }
     return $obj;
+  }
+
+  protected function hasBlockType(\ReflectionProperty $property, string $type): bool
+  {
+    $docComment = $property->getDocComment();
+    if ($docComment === false) {
+      return false;
+    }
+
+    // Simple regex to find the type after @var
+    if (preg_match('/@var\s+([a-zA-Z0-9\\\\\[\]_|()]+)/', $docComment, $matches)) {
+      $types = array_values(
+        array_map(
+          fn($t) => strtolower($t),
+          explode('|', str_replace(['(', ')', '[', ']'], '', $matches[1]))
+        )
+      );
+
+      return in_array(strtolower($type), $types);
+    }
+
+    return false;
   }
 
   /**
