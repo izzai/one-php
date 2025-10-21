@@ -28,7 +28,7 @@ abstract class BaseService
   ) {
     $this->instanceId = $instanceId;
     $this->auth = $auth;
-    $this->baseUrl = $baseUrl ?? 'https://api.izz.ai/';
+    $this->baseUrl = $baseUrl ?? 'https://api.one.izz.ai/';
 
     $this->validateConfiguration();
     $this->httpClient = new Client(['base_uri' => $this->baseUrl]);
