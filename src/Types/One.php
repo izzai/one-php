@@ -951,6 +951,8 @@ class Message
   public $scratchPad;
   /** @var MessageLlm|null */
   public $llm;
+  /** @var string[] */
+  public $processErrors;
   /** @var string */
   public $_id;
   /** @var string|null */
