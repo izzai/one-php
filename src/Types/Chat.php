@@ -128,6 +128,9 @@ class IChatBody
 
   /** @var bool|null */
   public $regenerate;
+
+  /** @var bool|null */
+  public $noPromptInjectionProtection;
 }
 
 /**

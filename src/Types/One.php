@@ -247,6 +247,8 @@ class Chat
   public $createdAt;
   /** @var string|null */
   public $updatedAt;
+  /** @var bool|null */
+  public $noPromptInjectionProtection;
 }
 
 // ---
