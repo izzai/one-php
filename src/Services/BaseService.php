@@ -89,7 +89,7 @@ abstract class BaseService
 
     try {
       $response = $this->httpClient->post($path, $options);
-      return json_decode($response->getBody()->getContents(), true);
+      return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
     } catch (Exception $e) {
       throw new Exception('Request failed: ' . $e->getMessage(), $e->getCode(), $e);
     }
@@ -107,7 +107,7 @@ abstract class BaseService
 
     try {
       $response = $this->httpClient->get($path, $options);
-      return json_decode($response->getBody()->getContents(), true);
+      return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
     } catch (Exception $e) {
       throw new Exception('Request failed: ' . $e->getMessage(), $e->getCode(), $e);
     }
@@ -129,7 +129,7 @@ abstract class BaseService
 
     try {
       $response = $this->httpClient->put($path, $options);
-      return json_decode($response->getBody()->getContents(), true);
+      return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
     } catch (Exception $e) {
       throw new Exception('Request failed: ' . $e->getMessage(), $e->getCode(), $e);
     }
@@ -151,7 +151,7 @@ abstract class BaseService
 
     try {
       $response = $this->httpClient->patch($path, $options);
-      return json_decode($response->getBody()->getContents(), true);
+      return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
     } catch (Exception $e) {
       throw new Exception('Request failed: ' . $e->getMessage(), $e->getCode(), $e);
     }
@@ -165,7 +165,7 @@ abstract class BaseService
 
     try {
       $response = $this->httpClient->delete($path, $options);
-      return json_decode($response->getBody()->getContents(), true);
+      return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
     } catch (Exception $e) {
       throw new Exception('Request failed: ' . $e->getMessage(), $e->getCode(), $e);
     }
@@ -180,7 +180,7 @@ abstract class BaseService
 
     try {
       $response = $this->httpClient->post($path, $options);
-      return json_decode($response->getBody()->getContents(), true);
+      return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
     } catch (Exception $e) {
       throw new Exception('Request failed: ' . $e->getMessage(), $e->getCode(), $e);
     }

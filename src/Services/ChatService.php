@@ -30,7 +30,7 @@ class ChatService extends BaseService
     $body = array_merge([
       'msg' => $message,
       'datasources' => []
-    ], json_decode(json_encode($this->defaultOptions($options)), true));
+    ], json_decode(json_encode($this->defaultOptions($options)), true, 512, JSON_THROW_ON_ERROR));
 
     $response = $this->sendPost('/v1/chat', $body);
 
@@ -38,8 +38,17 @@ class ChatService extends BaseService
       throw new Exception('No messages found in response');
     }
 
+    $output = $this->castToClass($response, ChatWithMessages::class);
+    $output->messages = array_map(function ($op) {
+      if (!empty($op->parsedContent)) {
+        $op->parsedContent = json_decode(json_encode($op->parsedContent), true, 512, JSON_THROW_ON_ERROR);
+      }
+
+      return $op;
+    }, $output->messages);
+
     return $this->filterMessagesByMode(
-      $this->castToClass($response, ChatWithMessages::class),
+      $output,
       $messageMode
     );
   }
@@ -80,7 +89,7 @@ class ChatService extends BaseService
     // Add options as form fields
     $optionsWithDefaults = array_merge(
       ['datasources' => []],
-      json_decode(json_encode($this->defaultOptions($options)), true)
+      json_decode(json_encode($this->defaultOptions($options)), true, 512, JSON_THROW_ON_ERROR)
     );
     foreach ($optionsWithDefaults as $key => $value) {
       if (is_array($value)) {
@@ -104,8 +113,18 @@ class ChatService extends BaseService
       throw new Exception('No messages found in response');
     }
 
+    $output = $this->castToClass($response, ChatWithMessages::class);
+    $output->messages = array_map(function ($op) {
+      if (!empty($op->parsedContent)) {
+        $op->parsedContent = json_decode(json_encode($op->parsedContent), true, 512, JSON_THROW_ON_ERROR);
+      }
+
+      return $op;
+    }, $output->messages);
+
+
     return $this->filterMessagesByMode(
-      $this->castToClass($response, ChatWithMessages::class),
+      $output,
       $messageMode
     );
   }
@@ -120,7 +139,10 @@ class ChatService extends BaseService
     $options->tags[] = 'one-sdk-php';
 
 
-    return array_filter(json_decode(json_encode($options), true), fn($v) => $v !== null);
+    return array_filter(
+      json_decode(json_encode($options), true, 512, JSON_THROW_ON_ERROR),
+      fn($v) => $v !== null
+    );
   }
 
   private function filterMessagesByMode(
