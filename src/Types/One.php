@@ -929,6 +929,10 @@ class Message
   public $outputParser;
   /** @var mixed|null */
   public $rawResponse;
+  /** @var mixed|null */
+  public $rawInfo;
+  /** @var mixed|null */
+  public $tokenUsage;
   /** @var string[] */
   public $filePaths;
   /** @var int|null */
